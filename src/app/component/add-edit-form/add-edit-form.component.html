@@ -22,33 +22,32 @@
         <mat-form-field appearance="outline">
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" formControlName="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Date of Birth</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dob">
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [value]="formatDate(empForm.controls['dateOfBirth'].value)" required>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          </mat-form-field>
         <mat-form-field appearance="outline" hidden>
             <mat-label>Company</mat-label>
-            <input matInput type="text" placeholder="Ex. Google" formControlName="company">
+            <input matInput type="text" placeholder="Ex. Google" formControlName="company" required>
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
-              <mat-option *ngFor="let val of genderValues" [value]="val">
-                {{val}}
+            <mat-select formControlName="gender" required>
+              <mat-option *ngFor="let val of genderValues" [value]="val.value" >
+                {{val.label}}
               </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Salary</mat-label>
-            <input matInput placeholder="Ex. 12000" type="number" formControlName="salary">
+            <input matInput placeholder="Ex. 12000" type="number" formControlName="salary" required>
         </mat-form-field>
     </div>
     <div class="button">

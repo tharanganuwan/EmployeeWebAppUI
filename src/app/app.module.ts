@@ -16,12 +16,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { EmployeeTableComponent } from './component/employee-table/employee-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AddEditFormComponent
+    AddEditFormComponent,
+    EmployeeTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
