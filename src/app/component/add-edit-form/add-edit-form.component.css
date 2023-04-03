@@ -1,0 +1,15 @@
+.row{
+    padding: 0px 20px ;
+}
+mat-form-field{
+    width: 220px;
+}
+.button{
+   align-items: center;
+   display: flex;
+}
+button{
+    width: 100px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}

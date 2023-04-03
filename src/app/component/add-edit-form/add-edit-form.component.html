@@ -1,0 +1,58 @@
+<div mat-dialog-title>
+    <h1>
+        Employee Form
+    </h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+        <mat-form-field appearance="outline" hidden>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Ruwan" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" hidden>
+            <mat-label>Middle Name</mat-label>
+            <input matInput type="text" placeholder="Ex. kasun" formControlName="middleName">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline" hidden>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" placeholder="Ex. weerasinha" formControlName="lastName" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dob">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" hidden>
+            <mat-label>Company</mat-label>
+            <input matInput type="text" placeholder="Ex. Google" formControlName="company">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let val of genderValues" [value]="val">
+                {{val}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input matInput placeholder="Ex. 12000" type="number" formControlName="salary">
+        </mat-form-field>
+    </div>
+    <div class="button">
+        <button mat-raised-button type="button">Cancle</button>
+        <button mat-raised-button color="primary" type="submit">Add</button>
+    </div>
+</form>
