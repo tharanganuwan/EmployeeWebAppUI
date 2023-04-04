@@ -11,11 +11,18 @@ export class EmployeeService {
   constructor(private _http:HttpClient) { }
 
   addEmployee(data:Employee):Observable<any>{
-    console.log(data.dateOfBirth);
     return this._http.post('https://localhost:44338/api/Employee',data)
   }
 
   getEmployee():Observable<any>{
     return this._http.get<Employee[]>('https://localhost:44338/api/Employee')
+  }
+
+  deleteEmployee(id:number):Observable<any>{
+    return this._http.delete(`https://localhost:44338/api/Employee/${id}`);
+  }
+
+  updateEmployee(id:string,data:Employee):Observable<any>{
+    return this._http.put(`https://localhost:44338/api/Employee/${id}`,data)
   }
 }

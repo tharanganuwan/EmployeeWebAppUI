@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { DatePipe } from '@angular/common';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CoreService } from 'src/app/services/core/core.service';
 
 
 @Component({
@@ -13,7 +13,13 @@ import { DatePipe } from '@angular/common';
 })
 export class AddEditFormComponent implements OnInit{
   ngOnInit(): void {
-    
+    this.empForm.patchValue(this.data)
+    const parts =this.data.name.split(" ");
+    this.empForm.patchValue({
+      firstName: parts[0],
+      middleName: parts[1],
+      lastName : parts[2]
+    })
   }
   
   genderValues: { label: string, value: number }[] = [
@@ -22,11 +28,13 @@ export class AddEditFormComponent implements OnInit{
     { label: 'Other', value: 2 }
   ];
   empForm : FormGroup;
-
+  
   constructor(
     private _fb:FormBuilder,
     private _empService: EmployeeService,
-    private datePipe: DatePipe
+    private _dialogRef:MatDialogRef<AddEditFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:Employee,
+    private _coreService : CoreService
   ){
     this.empForm = this._fb.group({
       firstName:'',
@@ -41,17 +49,26 @@ export class AddEditFormComponent implements OnInit{
   }
   onFormSubmit(){
     if(this.empForm.valid){
-      this._empService.addEmployee(<Employee>this.empForm.value).subscribe({
-        next:(val:any) =>{
-          console.log(val);
-          
-        },error(err) {
-          console.log(err)
-        },
-      })
+      if(this.data){
+        this._empService.updateEmployee(this.data.employeeId,this.empForm.value).subscribe({
+          next :(val:any) =>{
+            this._coreService.openSnackBar("employee update success!","done");
+            this._dialogRef.close(true);
+          },error(err) {
+            console.log(err);
+          },
+        })
+      }else{
+        this._empService.addEmployee(<Employee>this.empForm.value).subscribe({
+          next:(val:any) =>{
+            this._coreService.openSnackBar("employee added success!","done");
+            this._dialogRef.close(true);
+          },error(err) {
+            console.log(err)
+          },
+        })
+      }
+      
     }
-  }
-  formatDate(date: Date | null): string {
-    return this.datePipe.transform(date, 'yyyy-MM-dd') ?? '';
   }
 }

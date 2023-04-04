@@ -27,7 +27,7 @@
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Date of Birth</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [value]="formatDate(empForm.controls['dateOfBirth'].value)" required>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [value]="empForm.controls['dateOfBirth'].value | date:'yyyy-MM-dd'  " required>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -51,7 +51,7 @@
         </mat-form-field>
     </div>
     <div class="button">
-        <button mat-raised-button type="button">Cancle</button>
-        <button mat-raised-button color="primary" type="submit">Add</button>
+        <button mat-raised-button type="button" mat-dialog-close="false">Cancle</button>
+        <button mat-raised-button color="primary" type="submit">{{data?'Update':'Add'}}</button>
     </div>
 </form>
