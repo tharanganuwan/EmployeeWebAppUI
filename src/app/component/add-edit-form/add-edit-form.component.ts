@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Employee } from 'src/app/models/employee.model';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeService } from 'src/app/services/employeeService/employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoreService } from 'src/app/services/core/core.service';
 
@@ -14,12 +14,15 @@ import { CoreService } from 'src/app/services/core/core.service';
 export class AddEditFormComponent implements OnInit{
   ngOnInit(): void {
     this.empForm.patchValue(this.data)
-    const parts =this.data.name.split(" ");
+    if(this.data != null){
+      const parts =this.data.name.split(" ");
     this.empForm.patchValue({
       firstName: parts[0],
       middleName: parts[1],
       lastName : parts[2]
     })
+    }
+    
   }
   
   genderValues: { label: string, value: number }[] = [
