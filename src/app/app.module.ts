@@ -21,6 +21,9 @@ import { EmployeeTableComponent } from './component/employee-table/employee-tabl
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HeaderComponent,
     AddEditFormComponent,
     EmployeeTableComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    MatCardModule
   ],
   providers: [EmployeeTableComponent],
   bootstrap: [AppComponent],

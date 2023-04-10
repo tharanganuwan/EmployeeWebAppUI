@@ -1,0 +1,33 @@
+<div class="contaner" >
+    <mat-card class="example-card">
+        <h2>Login</h2>
+         <form [formGroup]="loginForm">
+            <div class="example-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" formControlName="email" required>
+                  <mat-error 
+                  *ngIf="loginForm.controls['email'].dirty ||
+                  loginForm.controls['email'].hasError('required','email')">please enter valid email</mat-error>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error 
+                  *ngIf="loginForm.controls['password'].dirty ||
+                  loginForm.controls['password'].hasError('required','email')">please enter valid password</mat-error>
+              </mat-form-field>
+
+              <div>
+                <button (click)="onsubmit()" mat-raised-button color="primary" type="submit" >Login</button>
+                <span> Don't have account? <a href="http://localhost:4200/register">Register</a></span>
+              </div>
+              
+         </form>   
+    </mat-card>
+</div>
