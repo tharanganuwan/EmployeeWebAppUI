@@ -24,6 +24,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import {MatCardModule} from '@angular/material/card';
+import { NgToastModule } from 'ng-angular-popup'
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatCardModule} from '@angular/material/card';
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    NgToastModule
   ],
   providers: [EmployeeTableComponent],
   bootstrap: [AppComponent],
