@@ -1,6 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
+import { AuthService } from 'src/app/services/authServices/auth.service';
 // import { EmployeeTableComponent } from '../employee-table/employee-table.component';
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent {
 
   // @ViewChild(EmployeeTableComponent,{static:false}) componet!: EmployeeTableComponent;
 
-  constructor(private _dialog: MatDialog){}
+  constructor(private _dialog: MatDialog,private auth:AuthService){}
 
   openForm(){
     const formRef = this._dialog.open(AddEditFormComponent);
@@ -24,5 +25,8 @@ export class HeaderComponent {
     //     }
     //   }
     // })
+  }
+  logOut(){
+    this.auth.logOut();
   }
 }

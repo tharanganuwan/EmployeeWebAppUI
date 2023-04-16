@@ -16,7 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EmployeeTableComponent } from './component/employee-table/employee-table.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -25,6 +25,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import {MatCardModule} from '@angular/material/card';
 import { NgToastModule } from 'ng-angular-popup'
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,14 @@ import { NgToastModule } from 'ng-angular-popup'
     MatCardModule,
     NgToastModule
   ],
-  providers: [EmployeeTableComponent],
+  providers: [
+    EmployeeTableComponent,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    },
+  ],
   bootstrap: [AppComponent],
   
 })

@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit{
       (await this._auth.Login(this.loginForm.value))
       .subscribe({
         next:(res)=>{
+          this._auth.storeToken(res.token);
           this._toast.success({detail:"SUCCESS",summary:res.message,duration:5000});
           this.loginForm.reset();
           this._router.navigate(['dashboard']);
         },
         error:(err)=> {
-          this._toast.error({detail:"ERROR",summary:err.error.message,duration:5000});
+          this._toast.error({detail:"ERROR",summary:err,duration:5000});
           // this._coreService.openSnackBar(err.error.message,"login fail");
-          console.log(err.error.message);
         },
       })
     
