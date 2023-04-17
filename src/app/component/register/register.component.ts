@@ -44,14 +44,14 @@ export class RegisterComponent implements OnInit {
           this._router.navigate(['login']);
         },
         error:(err)=> {
-          this._toast.success({detail:"Registraion fail",summary:err.error.message,duration:5000});
+          this._toast.error({detail:"Registraion fail",summary:err,duration:5000});
           // this._coreService.openSnackBar(err.error.message,"Registraion fail",);
         },
       })
     }else{
       console.log("not valied");
       // this._coreService.openSnackBar("not valied Inputs","login fail");
-      this._toast.success({detail:"Registraion fail",summary:"not valied Inputs",duration:5000});
+      this._toast.error({detail:"Registraion fail",summary:"not valied Inputs",duration:5000});
     }
   }
 }
