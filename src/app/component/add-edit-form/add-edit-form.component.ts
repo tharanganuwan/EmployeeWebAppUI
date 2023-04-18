@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employeeService/employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -43,8 +43,8 @@ export class AddEditFormComponent implements OnInit{
       firstName:'',
       middleName:'',
       lastName:'',
-      email:'',
-      dateOfBirth:'',
+      email:['', [Validators.required, Validators.email]],
+      dateOfBirth:['',[Validators.required,]],
       company:'',
       gender:'',
       salary:''
@@ -66,6 +66,7 @@ export class AddEditFormComponent implements OnInit{
           next:(val:any) =>{
             this._coreService.openSnackBar("employee added success!","done");
             this._dialogRef.close(true);
+            window.location.reload();
           },error(err) {
             console.log(err)
           },

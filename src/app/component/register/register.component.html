@@ -34,10 +34,20 @@
                   registrationForm.controls['password'].hasError('required')">please enter valid password</mat-error>
                 </mat-form-field>
             </div>
-            <div>
+            <!-- <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Role</mat-label>
                     <input matInput placeholder="Ex. user" formControlName="role" >
+                </mat-form-field>
+            </div> -->
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="role" required>
+                        <mat-option *ngFor="let val of genderValues" [value]="val.label" >
+                          {{val.label}}
+                        </mat-option>
+                      </mat-select>
                 </mat-form-field>
             </div>
             

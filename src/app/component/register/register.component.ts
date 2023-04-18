@@ -30,6 +30,11 @@ export class RegisterComponent implements OnInit {
     
   }
   hide = true;
+  genderValues: { label: string}[] = [
+    { label: 'Admin' },
+    { label: 'User' },
+    { label: 'Other' }
+  ];
 
   registrationForm!:FormGroup;
 
