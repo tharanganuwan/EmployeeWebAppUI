@@ -1,7 +1,10 @@
 <mat-toolbar color="warn">
     <span><b>Employee Management Application</b></span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="primary" (click)="openForm()">Add Employee</button>
+    <span>Hello {{name}} </span>
+    <ng-container *ngIf="role === 'Admin'">
+        <button mat-raised-button color="primary" (click)="openForm()">Add Employee</button>
+    </ng-container>
     <button mat-raised-button color="accent" (click)="logOut()">Log Out</button>
 </mat-toolbar>
 <app-employee-table></app-employee-table>

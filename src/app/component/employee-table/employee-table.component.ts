@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table'
 import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreService } from 'src/app/services/core/core.service';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
@@ -32,14 +33,18 @@ export class EmployeeTableComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  public role!:string;
+
   constructor(
     private _empService: EmployeeService,
     private _dialog: MatDialog,
-    private _coreService : CoreService
+    private _coreService : CoreService,
+    private _header:HeaderComponent
     ){}
 
   ngOnInit(): void {
     this.getAllEmployee();
+    this.role=this._header.role;
   }
 
   getAllEmployee(){
