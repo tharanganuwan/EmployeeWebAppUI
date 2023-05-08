@@ -5,6 +5,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/authServices/auth.service';
 import { CoreService } from 'src/app/services/core/core.service';
 import { UserStoreService } from 'src/app/services/userStore/user-store.service';
+import { ResetPasswordInputEmailFormComponent } from '../reset-password-input-email-form/reset-password-input-email-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit{
     private _coreService : CoreService,
     private _toast: NgToastService,
     private userStore: UserStoreService,
+    private _dialog: MatDialog
+    
     ){
     this.loginForm = this._fb.group({
       email:['', [Validators.required, Validators.email]],
@@ -65,5 +69,8 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  cleckForgotPassword(){
+    const formRef = this._dialog.open(ResetPasswordInputEmailFormComponent,);
+  }
 
 }

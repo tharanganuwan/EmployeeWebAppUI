@@ -32,3 +32,7 @@
   mat-form-field {
     width: 300px;
   }
+.ForgotPassword{
+  color: blueviolet;
+  text-align: right;
+}

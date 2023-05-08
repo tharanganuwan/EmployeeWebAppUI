@@ -15,7 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EmployeeTableComponent } from './component/employee-table/employee-table.component';
 import {MatTableModule} from '@angular/material/table';
@@ -26,6 +26,7 @@ import { RegisterComponent } from './component/register/register.component';
 import {MatCardModule} from '@angular/material/card';
 import { NgToastModule } from 'ng-angular-popup'
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ResetPasswordInputEmailFormComponent } from './component/reset-password-input-email-form/reset-password-input-email-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AddEditFormComponent,
     EmployeeTableComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordInputEmailFormComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatPaginatorModule,
     MatSnackBarModule,
     MatCardModule,
-    NgToastModule
+    NgToastModule,
+    FormsModule,
   ],
   providers: [
     EmployeeTableComponent,

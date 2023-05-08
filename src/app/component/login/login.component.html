@@ -22,6 +22,9 @@
                   *ngIf="loginForm.controls['password'].dirty ||
                   loginForm.controls['password'].hasError('required','email')">please enter valid password</mat-error>
               </mat-form-field>
+              <div class="ForgotPassword" >
+                <button mat-button (click)="cleckForgotPassword()" color="warn">Forgot password</button>
+              </div>
 
               <div>
                 <button (click)="onLogin()" mat-raised-button color="primary" type="submit" >Login</button>
