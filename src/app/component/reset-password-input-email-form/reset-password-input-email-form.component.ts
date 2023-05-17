@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NgToastService } from 'ng-angular-popup';
+import { ResetPasswordService } from 'src/app/services/resetPassword/reset-password.service';
 
 
 @Component({
@@ -15,8 +16,16 @@ export class ResetPasswordInputEmailFormComponent {
 
   constructor(
     private _toast: NgToastService,
-    public dialogRef: MatDialogRef<ResetPasswordInputEmailFormComponent>
+    public dialogRef: MatDialogRef<ResetPasswordInputEmailFormComponent>,
+    private resetService:ResetPasswordService
     ) {}
+
+    checkValidEmail(event:string) {
+      const value=event;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      this.isvalidEmail = emailRegex.test(value);
+      return this.isvalidEmail;
+    }
 
   CancelClick() {
     this.dialogRef.close();
@@ -25,17 +34,24 @@ export class ResetPasswordInputEmailFormComponent {
   OkClick() {
     if (this.isvalidEmail) {
       console.log(this.resetPasswordEmail);
-      this._toast.success({detail:"Success",summary:"We sent email, check your email box",duration:5000});
-      this.dialogRef.close();
+      this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
+      .subscribe({
+        next:(res)=>{
+          this.dialogRef.close();
+          this._toast.success({detail:"Success",summary:"We sent email, check your email box",duration:5000});
+          this.resetPasswordEmail="";
+          this.dialogRef.close();
+        },
+        error:(err)=>{
+          console.log(err.message);
+          this._toast.error({detail:"ERROR",summary:err.message,duration:5000});
+        }
+      })
+      
     }else{
       this._toast.error({detail:"ERROR",summary:"Invalid Email",duration:5000});
     }
   }
 
-  checkValidEmail(event:string) {
-    const value=event;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.isvalidEmail = emailRegex.test(value);
-    return this.isvalidEmail;
-  }
+  
 }

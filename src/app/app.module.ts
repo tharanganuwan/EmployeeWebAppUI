@@ -27,6 +27,7 @@ import {MatCardModule} from '@angular/material/card';
 import { NgToastModule } from 'ng-angular-popup'
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ResetPasswordInputEmailFormComponent } from './component/reset-password-input-email-form/reset-password-input-email-form.component';
+import { ResetPasswordEditFormComponent } from './component/reset-password-edit-form/reset-password-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ResetPasswordInputEmailFormComponent } from './component/reset-password
     EmployeeTableComponent,
     LoginComponent,
     RegisterComponent,
-    ResetPasswordInputEmailFormComponent
+    ResetPasswordInputEmailFormComponent,
+    ResetPasswordEditFormComponent
   ],
   imports: [
     BrowserModule,
